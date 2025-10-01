@@ -9,7 +9,7 @@ __pycache__/
 *.pyd
 *.db
 *.env
-.env*
+.env
 venv/
 ENV/
 *.egg-info/

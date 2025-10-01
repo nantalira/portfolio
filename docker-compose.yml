@@ -6,12 +6,12 @@ services:
     volumes:
       - .:/app
     ports:
-      - "8000:8000"
+      - "8200:8000"
     env_file:
       - .env
     networks:
-      - mydbnet
+      - database-network
 
 networks:
-  mydbnet:
+  database-network:
     external: true
