@@ -1,0 +1,98 @@
+{% extends 'portfolio/layout.html' %} {% block navigation %}
+<a href="{% url 'portfolio:projects' %}" class="text-white text-decoration-none f-link">Projects</a>
+{% endblock %} {% block content %}
+<section id="experience">
+    <h3 class="text-white fw-light f-heading3">Experience</h3>
+    <hr class="my-4 opacity-50" />
+
+    {% for experience in experiences %}
+    <div class="row">
+        <div class="col-md-4">
+            <h2 class="text-white f-heading2">{{ experience.title }}</h2>
+            <p class="f-paragraph mb-1">{{ experience.company }}</p>
+            <p class="f-paragraph mb-1">{{ experience.start_date|date:"F Y" }} - {% if experience.is_current %}Present{% else %}{{ experience.end_date|date:"F Y" }}{% endif %}</p>
+            <p class="f-paragraph">{{ experience.location }}</p>
+        </div>
+        <div class="col-md-8">
+            <ul class="text-white">
+                {% for job in experience.get_job_list %}
+                <li class="f-paragraph-list">{{ job }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <hr class="my-4 opacity-50" />
+    </div>
+    {% endfor %}
+</section>
+
+<section id="skills">
+    <h3 class="text-white fw-light f-heading3">Skills</h3>
+
+    {% if skills %}
+    <div class="row">
+        <hr class="my-4 opacity-50" />
+        {% regroup skills by type as skill_groups %} {% for group in skill_groups %}
+        <div class="col-md-6">
+            <h2 class="f-heading2">{{ group.grouper|title }} Skills</h2>
+            <ul class="text-white">
+                {% for skill in group.list %}
+                <li class="f-paragraph-list">{{ skill.name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+        <hr class="my-4 opacity-50" />
+    </div>
+    {% endif %}
+</section>
+
+<section id="education" class="mb-5 row">
+    <h3 class="text-white fw-light f-heading3">Education</h3>
+    <hr class="my-4 opacity-50" />
+    {% for education in educations %}
+    <h2 class="f-heading2 text-white">{{ education.institution }}</h2>
+    <p class="f-paragraph mb-1">{{ education.degree }}</p>
+    <p class="f-paragraph mb-1">{{ education.start_date|date:"Y" }} - {{ education.graduation_date|date:"Y" }}</p>
+    {% if education.thesis_name %}
+    <p class="f-paragraph mb-1">
+        Thesis: {% if education.thesis_url %}
+        <a href="{{ education.thesis_url }}" target="_blank" class="text-decoration-none text-white f-paragraph cert-link"
+            >{{ education.thesis_name }}
+            <span class="arrow-icon ms-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-arrow-up-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0z" />
+                </svg>
+            </span>
+        </a>
+        {% else %} {{ education.thesis_name }} {% endif %}
+    </p>
+    {% endif %} {% if education.gpa %}
+    <p class="f-paragraph">GPA: {{ education.gpa }}/4.00</p>
+    {% endif %} {% if not forloop.last %}
+    <hr class="my-4 opacity-50" />
+    {% endif %} {% endfor %}
+</section>
+
+<section id="certification" class="mb-5">
+    <hr class="my-4 opacity-50" />
+    <h3 class="text-white fw-light f-heading3">Certifications</h3>
+    <hr class="my-4 opacity-50" />
+    {% for certification in certifications %}
+    <!-- <p class="f-paragraph mb-1"> -->
+    {% if certification.certificate_url %}
+    <a href="{{ certification.certificate_url }}" class="text-decoration-none text-white f-paragraph mb-1 cert-link" target="_blank"
+        >{{ certification.name }}
+        <span class="arrow-icon ms-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-arrow-up-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0z" />
+            </svg>
+        </span>
+    </a>
+    {% else %} {{ certification.name }} {% endif %}
+    <!-- </p> -->
+    <p class="f-paragraph mb-1">{{ certification.issuer }}, {{ certification.issue_date|date:"Y" }}</p>
+    {% if not forloop.last %}
+    <hr class="opacity-50 my-2" />
+    {% endif %} {% endfor %}
+</section>
+{% endblock %}
