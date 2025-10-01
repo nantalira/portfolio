@@ -115,7 +115,7 @@
                             <ul class="list-unstyled">
                                 <hr class="opacity-50 my-2" />
                                 <li>
-                                    <a href="mailto:{% if profile %}{{ profile.email }}{% else %}hello@figma.com{% endif %}" class="text-white text-decoration-none f-paragraph cert-link">
+                                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to={% if profile %}{{ profile.email }}{% else %}hello@figma.com{% endif %}" class="text-white text-decoration-none f-paragraph cert-link" target="_blank">
                                         {% if profile %}{{ profile.email }}{% else %}hello@figma.com{% endif %}
                                         <span class="arrow-icon ms-2">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-arrow-up-right" viewBox="0 0 16 16">
@@ -126,7 +126,7 @@
                                 </li>
                                 <hr class="opacity-50 my-2" />
                                 <li class="my-2">
-                                    <a href="{% if profile and profile.github %}{{ profile.github }}{% else %}https://github.com{% endif %}" class="text-white text-decoration-none f-paragraph cert-link">
+                                    <a href="{% if profile and profile.github %}{{ profile.github }}{% else %}https://github.com{% endif %}" class="text-white text-decoration-none f-paragraph cert-link" target="_blank">
                                         GitHub
                                         <span class="arrow-icon ms-2">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-arrow-up-right" viewBox="0 0 16 16">
@@ -137,7 +137,7 @@
                                 </li>
                                 <hr class="opacity-50 my-2" />
                                 <li>
-                                    <a href="{% if profile and profile.linkedin %}{{ profile.linkedin }}{% else %}#{% endif %}" class="text-white text-decoration-none f-paragraph cert-link">
+                                    <a href="{% if profile and profile.linkedin %}{{ profile.linkedin }}{% else %}#{% endif %}" class="text-white text-decoration-none f-paragraph cert-link" target="_blank">
                                         LinkedIn
                                         <span class="arrow-icon ms-2">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-arrow-up-right" viewBox="0 0 16 16">
