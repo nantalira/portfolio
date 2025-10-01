@@ -24,3 +24,4 @@ ENV/
 /media/
 # VSCode
 .history/
+/staticfiles/

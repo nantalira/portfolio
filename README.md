@@ -45,9 +45,11 @@
     Buka terminal baru, lalu:
 
     ```bash
-    docker-compose exec web python manage.py migrate
-    docker-compose exec web python manage.py collectstatic --noinput
-    docker-compose exec web python manage.py seed_data
+    sudo docker compose exec web python manage.py generate_secret_key
+    sudo docker compose exec web python manage.py migrate
+    sudo docker compose exec web python manage.py collectstatic --noinput
+    sudo docker compose exec web python manage.py seed_data
+    sudo docker compose exec web python manage.py createsuperuser
     ```
 
     > Pastikan database MySQL sudah berjalan dan dapat diakses dari container web sebelum menjalankan migrate!
