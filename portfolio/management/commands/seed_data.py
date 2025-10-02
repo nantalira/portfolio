@@ -127,10 +127,21 @@ class Command(BaseCommand):
         # Create Projects
         Project.objects.create(
             title="Portfolio Website",
+            project_type="self",
             technologies="Django, Bootstrap, HTML5, CSS3",
             live_url="https://alexandra-moore.com",
             github_url="https://github.com/alexandra/portfolio",
             key_achievements="Personal portfolio website showcasing creative work and production capabilities.\nBuilt with modern web technologies and responsive design principles.\nFeatures dark theme design and smooth scroll interactions for optimal user experience."
+        )
+        
+        Project.objects.create(
+            title="E-commerce Platform",
+            project_type="work",
+            company="Tech Corp",
+            technologies="React, Node.js, PostgreSQL, Stripe API",
+            live_url="https://shop.techcorp.com",
+            github_url="",
+            key_achievements="Led development of full-scale e-commerce platform serving 10,000+ users.\nImplemented secure payment processing and inventory management system.\nAchieved 99.9% uptime and reduced page load times by 40%."
         )
         # Create Recommendations
         Recommendation.objects.create(

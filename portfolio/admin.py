@@ -30,7 +30,9 @@ class CertificationAdmin(admin.ModelAdmin):
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ['title', 'technologies', 'live_url', 'github_url']
+    list_display = ['title', 'project_type', 'company', 'technologies']
+    list_filter = ['project_type']
+    ordering = ['project_type', 'title']
 
 @admin.register(Recommendation)
 class RecommendationAdmin(admin.ModelAdmin):

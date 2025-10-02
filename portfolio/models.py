@@ -75,7 +75,14 @@ class Certification(models.Model):
         return self.name
 
 class Project(models.Model):
+    PROJECT_TYPES = [
+        ('work', 'Work Project'),
+        ('self', 'Personal Project'),
+    ]
+    
     title = models.CharField(max_length=200)
+    project_type = models.CharField(max_length=10, choices=PROJECT_TYPES, default='self')
+    company = models.CharField(max_length=200, blank=True, null=True, help_text="Required for work projects")
     technologies = models.CharField(max_length=500)
     live_url = models.URLField(blank=True, null=True)
     github_url = models.URLField(blank=True, null=True)

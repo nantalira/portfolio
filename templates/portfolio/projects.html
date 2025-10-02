@@ -3,14 +3,17 @@
 {% endblock %} {% block content %}
 <!-- Projects Section -->
 <section id="projects">
-    <h3 class="text-white fw-light f-heading3">Projects</h3>
+    <!-- Work Projects Section -->
+    <h3 class="text-white fw-light f-heading3">Work Projects</h3>
     <hr class="my-4 opacity-50" />
-    {% for project in projects %}
-    <!-- Project Item -->
+    {% for project in work_projects %}
     <div class="row mb-4">
         <div class="col-md-4">
             <h2 class="text-white f-heading2">{{ project.title }}</h2>
-            <p class="f-paragraph mb-1">{{ project.technologies }} ›</p>
+            {% if project.company %}
+            <p class="f-paragraph mb-1">{{ project.company }}</p>
+            {% endif %}
+            <p class="f-paragraph mb-1">{{ project.technologies }}</p>
             <div class="d-flex gap-3 mt-2">
                 {% if project.live_url %}<a href="{{ project.live_url }}" class="project-link">Live Site ›</a>{% endif %} {% if project.github_url %}<a href="{{ project.github_url }}" class="project-link">GitHub ›</a>{% endif %}
             </div>
@@ -26,13 +29,46 @@
     {% if not forloop.last %}
     <hr class="my-4 opacity-50" />
     {% endif %} {% empty %}
-    <!-- No Projects Message -->
     <div class="row mb-4">
         <div class="col-md-4">
-            <h2 class="text-white f-heading2">No Projects</h2>
+            <h2 class="text-white f-heading2">No Work Projects</h2>
         </div>
         <div class="col-md-8">
-            <p class="text-white f-paragraph-list">Projects will be displayed here once added to the database.</p>
+            <p class="text-white f-paragraph-list">Work projects will be displayed here once added to the database.</p>
+        </div>
+    </div>
+    {% endfor %}
+
+    <!-- Personal Projects Section -->
+    <hr class="my-4 opacity-50" />
+    <h3 class="text-white fw-light f-heading3">Personal Projects</h3>
+    <hr class="my-4 opacity-50" />
+    {% for project in self_projects %}
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <h2 class="text-white f-heading2">{{ project.title }}</h2>
+            <p class="f-paragraph mb-1">{{ project.technologies }}</p>
+            <div class="d-flex gap-3 mt-2">
+                {% if project.live_url %}<a href="{{ project.live_url }}" class="project-link">Live Site ›</a>{% endif %} {% if project.github_url %}<a href="{{ project.github_url }}" class="project-link">GitHub ›</a>{% endif %}
+            </div>
+        </div>
+        <div class="col-md-8">
+            <ul class="text-white">
+                {% for achievement in project.get_achievements_list %}
+                <li class="f-paragraph-list">{{ achievement }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% if not forloop.last %}
+    <hr class="my-4 opacity-50" />
+    {% endif %} {% empty %}
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <h2 class="text-white f-heading2">No Personal Projects</h2>
+        </div>
+        <div class="col-md-8">
+            <p class="text-white f-paragraph-list">Personal projects will be displayed here once added to the database.</p>
         </div>
     </div>
     {% endfor %}

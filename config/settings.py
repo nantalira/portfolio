@@ -25,9 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-7qsto3p9i+(p!^1wel@(ix6g3%s62c++@2fysakr(^377wqo9@')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False').lower() in ('true', '1', 'yes')
+DEBUG = True
+print("DEBUG:", DEBUG)
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,nantalira.site').split(',')
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1,nantalira.site').split(',')
 
 # CSRF settings
 CSRF_TRUSTED_ORIGINS = os.environ.get(

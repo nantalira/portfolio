@@ -22,9 +22,11 @@ def home(request):
 
 def projects(request):
     """Projects page"""
-    projects = Project.objects.all()
+    work_projects = Project.objects.filter(project_type='work')
+    self_projects = Project.objects.filter(project_type='self')
     context = {
-        'projects': projects,
+        'work_projects': work_projects,
+        'self_projects': self_projects,
         'profile': Profile.objects.first(),
     }
     return render(request, 'portfolio/projects.html', context)
